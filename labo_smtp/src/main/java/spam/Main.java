@@ -10,6 +10,10 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.nio.charset.StandardCharsets;
 import java.sql.Time;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     final static String HOST_NAME = "localhost";
@@ -23,19 +27,38 @@ public class Main {
             var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
             BufferedReader terminalInput = new BufferedReader(new InputStreamReader(System.in))) {
 
-            
+            LinkedList<String> instructions = new LinkedList<>(Arrays.asList(
+                "EHLO bar.com",
+                "MAIL FROM:<Aaron@bar.com>",
+                "RCPT TO:<Bast@foo.com>",
+                "DATA",
+                "Date: Thu, 21 May 1998 05:33:29 -0700\n" +
+                "Date: Thu, 21 May 1998 05:33:29 -0700\n" +
+                "From: John Q. Public <JQP@bar.com>\n" +
+                "Subject: The Next Meeting of the Board\n" +
+                "To: Jones@xyz.com\n\n" +
+                "Salut\nsalutsalut" +
+                "\r\n.\r\n"
+            ));
+
+            Iterator<String> it = instructions.iterator();
 
             while (true) {
                 StringBuilder answers = new StringBuilder();
                 String line;
                 while ((line = in.readLine()) != null && line.length() != 0) {
-
                     answers.append("- " + line + "\n");
-                    if (line.charAt(3) == ' ') break;
+                    if (line.charAt(3) != '-') break;
                 }
                 System.out.print(answers.toString());
 
-                out.write(terminalInput.readLine() + END_LINE);
+                if (it.hasNext()) {
+                    String instruction = it.next();
+                    System.out.println(instruction);
+                    out.write(instruction + END_LINE);
+                } else {
+                    out.write(terminalInput.readLine() + END_LINE);
+                }
                 out.flush();
             }
 
