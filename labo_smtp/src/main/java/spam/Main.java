@@ -22,21 +22,21 @@ public class Main {
     final static String END_LINE = "\n";
 
     public static void main(String[] args) {
-        try (Socket socket = new Socket(HOST_NAME, SERVER_PORT);
+        System.out.println(Utils.getVictims());
+        /*try (Socket socket = new Socket(HOST_NAME, SERVER_PORT);
             var in = new BufferedReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
             var out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8));
             BufferedReader terminalInput = new BufferedReader(new InputStreamReader(System.in))) {
 
             LinkedList<String> instructions = new LinkedList<>(Arrays.asList(
-                "EHLO bar.com",
+                "EHLO unil.ch",
                 "MAIL FROM:<Aaron@bar.com>",
-                "RCPT TO:<Bast@foo.com>",
+                "RCPT TO:<benoit.jaouen@heig-vd.ch>",
                 "DATA",
-                "Date: Thu, 21 May 1998 05:33:29 -0700\n" +
                 "Date: Thu, 21 May 1998 05:33:29 -0700\n" +
                 "From: John Q. Public <JQP@bar.com>\n" +
                 "Subject: The Next Meeting of the Board\n" +
-                "To: Jones@xyz.com\n\n" +
+                "To: benoit.jaouen@heig-vd.ch\n\n" +
                 "Salut\nsalutsalut" +
                 "\r\n.\r\n"
             ));
@@ -64,7 +64,7 @@ public class Main {
 
         } catch (Exception e) {
 
-        }
+        }*/
         
     }
     /* 

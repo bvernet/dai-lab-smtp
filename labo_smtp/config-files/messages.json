@@ -1,0 +1,10 @@
+{
+    "m1":[
+        "Subject: This is not spam",
+        "Bill: body of the mail"
+    ],
+    "m2":[
+        "Subject: This is a spam",
+        "Bill: body of the mail"
+    ]
+}
